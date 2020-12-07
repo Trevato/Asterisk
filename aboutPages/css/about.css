@@ -1,0 +1,60 @@
+/* #aboutHeaderBanner {
+    background-image: linear-gradient(to right, #28a745, #28a745 20%, #17a2b8, #17a2b8 40%, #ffc107, #ffc107 60%, #dc3545, #dc3545 80%, #6c757d, #6c757d 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+#financialAboutHeaderBanner {
+    background-image: linear-gradient(to right, #28a745, #28a745 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#spiritualAboutHeaderBanner {
+    background-image: linear-gradient(to right, #17a2b8, #17a2b8 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#mentalAboutHeaderBanner {
+    background-image: linear-gradient(to right, #ffc107, #ffc107 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#physicalAboutHeaderBanner {
+    background-image: linear-gradient(to right, #dc3545, #dc3545 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#academicAboutHeaderBanner {
+    background-image: linear-gradient(to right, #6c757d, #6c757d 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#greenCode {
+  text-decoration: none;
+  color: #28a745;
+}
+
+#blueCode {
+  text-decoration: none;
+  color: #17a2b8;
+}
+
+#yellowCode {
+  text-decoration: none;
+  color: #ffc107;
+}
+
+#redCode {
+  text-decoration: none;
+  color: #dc3545;
+}
+
+#greyCode {
+  text-decoration: none;
+  color: #6c757d;
+}

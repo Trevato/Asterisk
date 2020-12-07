@@ -1,0 +1,9 @@
+.card {
+  background-color: rgba(245, 245, 245, 0) !important;
+  border-color: rgba(245, 245, 245, 1) !important;
+}
+
+.card-footer {
+  background-color: rgba(245, 245, 245, .2) !important;
+  border-color: rgba(245, 245, 245, 1) !important;
+}

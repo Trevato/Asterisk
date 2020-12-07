@@ -1,0 +1,52 @@
+#authForm {
+    background: linear-gradient(60deg, #28a745, rgba(0,0,255,0) 70%),
+                linear-gradient(120deg, #17a2b8, rgba(0,0,255,0) 70%),
+                linear-gradient(180deg, #ffc107, rgba(0,0,255,0) 70%),
+                linear-gradient(270deg, #dc3545, rgba(0,0,255,0) 70%),
+                linear-gradient(360deg, #6c757d, rgba(0,0,255,0) 70%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+}
+input.transparent-input{
+    /* background-color:rgba(0,0,0,0) !important; */
+    border:none !important;
+    -webkit-text-fill-color: rgba(0,0,0,0);
+}
+
+.form-control::-webkit-input-placeholder {
+    color: white;
+}
+
+.btn {
+  border:none !important;
+  outline: 0 none;
+}
+
+.btn:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+  background-color:rgba(0,0,0,0) !important;
+  color:white;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+  outline: 0 none;
+}

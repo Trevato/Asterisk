@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<title>asterisk | financial | about</title>
+
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/about.css">
+
+</head>
+
+<div class="container-fluid">
+
+  <div class="row justify-content-center" id="financialAboutHeaderBanner">
+    <h1 id="aboutHeader" class="text-white">Financial Tracking</h1>
+  </div>
+  <div class="row justify-content-center p-5" id="financialAboutBodyBanner">
+    <div class="col-4">
+      <p id="aboutBody" class="text-center">The financial tracking system would be fully automated in the future. Could use APIs to track investment gains and use webscraping (possibly unsecure but
+      APIs are hard to get access to so this would simply be for proof-of-concept) to track credit/debit card spending.</p>
+    </div>
+  </div>
+  <div class="row justify-content-center p-2" id="financialAboutBodyBanner">
+    <div class="col-4">
+      <p id="aboutBody" class="text-center font-italic">Example:</p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center" id="financialAboutCardExample">
+    <div class="col-3">
+      <div class="card bg-success text-center">
+        <div class="card-body">
+          <h5 class="card-title text-white">Financial</h5>
+          <p class="card-text text-white">$10,0000</p>
+          <p class="card-text text-white change">100</p>
+          <button data-toggle="modal" data-target="#financialModal" class="btn stretched-link btn-dark">Update</button>
+        </div>
+        <div class="card-footer text-white">
+          2 days ago
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <a href="../index.html" class="btn btn-success">Home</a>
+  </div>
+</div>
