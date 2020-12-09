@@ -3,7 +3,15 @@
 
 <head>
 
+  <!-- Send to login if not logged in -->
+  <?php
+  if(!isset($_SESSION['login'])){
+    header("Location: /auth/login.php");
+  }
+  ?>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" crossorigin="anonymous"></script>
@@ -20,7 +28,16 @@ session_start();
 <div class="container-fluid fill">
   <div class="row justify-content-center">
     <h1 class="p-3 mb-5 text-center text-white"><?php echo $_SESSION["username"] ?>'s asterisk</h1>
-    <a class="p-3 mt-2 btn logout-button position-absolute" href="/auth/logout.php"><strong>Logout</strong></a>
+    <div class="p-3 mt-2 dropdown show position-absolute">
+      <a class="btn dropdown-toggle show" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+        More
+      </a>
+
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="/settings.php">Settings</a>
+        <a class="dropdown-item" href="/auth/logout.php">Logout</a>
+      </div>
+    </div>
   </div>
 
   <div class="row">
