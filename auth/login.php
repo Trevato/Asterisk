@@ -17,6 +17,7 @@
 
       <div class="row justify-content-center">
         <h1 class="p-3 text-white">Welcome back to asterisk</h1>
+        <img src="/icon.png" class="img-fluid position-absolute icon p-3" width="75" height="75">
       </div>
 
       <div class="row justify-content-center m-3">
@@ -28,11 +29,11 @@
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                         <input type="text" name="username" class="form-control transparent-input text-white" value="<?php echo $username; ?>" placeholder="Username">
-                        <span class="help-block"><?php echo $username_err; ?></span>
+                        <span class="help-block text-white"><?php echo $username_err; ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                         <input type="password" name="password" class="form-control transparent-input text-white" placeholder="Password">
-                        <span class="help-block"><?php echo $password_err; ?></span>
+                        <span class="help-block text-white"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-outline-light" value="Login">
@@ -43,6 +44,7 @@
           </div>
         </div>
       </div>
+
       <div class="row justify-content-center m-3 fixed-bottom">
         <div class="align-self-center">
           <p class="text-white">Made by  <strong><a class="text-white" href="https://github.com/Trevato">Trevor Dobbertin</a></strong>.</p>

@@ -7,3 +7,32 @@
   background-color: rgba(245, 245, 245, .2) !important;
   border-color: rgba(245, 245, 245, 1) !important;
 }
+
+.list-group-item {
+  background-color: transparent;
+  border-color: rgba(245, 245, 245, .2) !important;
+  /* border-radius: 3%; */
+  color: rgba(245, 245, 245, 1) !important;
+}
+
+.list-group-item.active {
+  font-weight: bold;
+  background-color: rgba(245, 245, 245, .2) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.list-group-item:hover {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, .2) !important;
+}
+
+.chart {
+  width: 640px;
+  height: auto;
+}
+
+.logout-button {
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+}
