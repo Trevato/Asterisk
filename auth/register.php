@@ -1,3 +1,7 @@
+<?php
+// Include config file
+require_once "./registerHelper.php";
+?>
 <!DOCTYPE html>
 <title>asterisk | trevor dobbertin</title>
 
@@ -11,15 +15,12 @@
 
 </head>
 
-<?php
-// Include config file
-require_once "./registerHelper.php";
-?>
 
 <div class="container-fluid fill">
 
   <div class="row justify-content-center">
     <h1 class="p-3 text-white">Welcome to asterisk</h1>
+    <img src="/icon.png" class="img-fluid position-absolute icon p-3" width="75" height="75">
   </div>
 
   <div class="row justify-content-center m-3">

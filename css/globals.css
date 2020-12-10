@@ -11,13 +11,13 @@ body {
     height: 100%;
 }
 
-.btn {
+.btn-sterisk-custom {
   color:white;
   border:none !important;
   outline: 0 none;
 }
 
-.btn:hover {
+.btn-sterisk-custom:hover {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
   background-color:rgba(0,0,0,0) !important;
   color:white;
@@ -42,4 +42,25 @@ body {
 .card-header {
   background-color: rgba(245, 245, 245, .2) !important;
   border-color: rgba(245, 245, 245, 0) !important;
+}
+
+.dropdown {
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+}
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border-color: rgba(245, 245, 245, 1) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.dropdown-item {
+  color: rgba(245, 245, 245, 1) !important;
+}
+
+.dropdown-item:hover {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, .2) !important;
 }

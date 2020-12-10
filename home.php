@@ -1,35 +1,38 @@
+<?php
+session_start();
+if(!isset($_SESSION["loggedin"])){
+  header("location: /auth/login.php");
+  exit;
+}
+
+require_once $_SERVER['DOCUMENT_ROOT'] ."/initializer.php";
+include("trackers/getTrackers.php");
+ob_start();
+
+?>
 <!DOCTYPE html>
 <title>asterisk | trevor dobbertin</title>
 
 <head>
 
   <!-- Send to login if not logged in -->
-  <?php
-  if(!isset($_SESSION['login'])){
-    header("Location: /auth/login.php");
-  }
-  ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/index.css">
   <link rel="stylesheet" href="../css/globals.css">
   <link rel="stylesheet" href="./css/home.css">
 
 </head>
 
-<?php
-session_start();
-?>
-
 <div class="container-fluid fill">
   <div class="row justify-content-center">
     <h1 class="p-3 mb-5 text-center text-white"><?php echo $_SESSION["username"] ?>'s asterisk</h1>
     <div class="p-3 mt-2 dropdown show position-absolute">
-      <a class="btn dropdown-toggle show" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+      <a class="btn dropdown-toggle show btn-sterisk-custom" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown">
         More
       </a>
 
@@ -44,16 +47,49 @@ session_start();
     <div class="col-4">
       <div class="list-group" id="list-tab" role="tablist">
         <a class="list-group-item list-group-item-action active" id="list-overview-list" data-toggle="list" href="#overviewCard" role="tab">Overview</a>
-        <a class="list-group-item list-group-item-action" id="list-financial-list" data-toggle="list" href="#financialCard" role="tab">Financial</a>
-        <a class="list-group-item list-group-item-action" id="list-spiritual-list" data-toggle="list" href="#spiritualCard" role="tab">Spiritual</a>
-        <a class="list-group-item list-group-item-action" id="list-mental-list" data-toggle="list" href="#mentalCard" role="tab">Mental</a>
-        <a class="list-group-item list-group-item-action" id="list-physical-list" data-toggle="list" href="#physicalCard" role="tab">Physical</a>
-        <a class="list-group-item list-group-item-action" id="list-academic-list" data-toggle="list" href="#academicCard" role="tab">Academic</a>
+        <a
+        <?php if (!in_array(0, $trackers)){
+          echo 'hidden';
+        }
+        ?>
+        class="list-group-item list-group-item-action" id="list-financial-list" data-toggle="list" href="#financialCard" role="tab">Financial</a>
+        <a
+        <?php if (!in_array(1, $trackers)){
+          echo 'hidden';
+        }
+        ?>
+        class="list-group-item list-group-item-action" id="list-spiritual-list" data-toggle="list" href="#spiritualCard" role="tab">Spiritual</a>
+        <a
+        <?php if (!in_array(2, $trackers)){
+          echo 'hidden';
+        }
+        ?>
+        class="list-group-item list-group-item-action" id="list-mental-list" data-toggle="list" href="#mentalCard" role="tab">Mental</a>
+        <a
+        <?php if (!in_array(3, $trackers)){
+          echo 'hidden';
+        }
+        ?>
+        class="list-group-item list-group-item-action" id="list-physical-list" data-toggle="list" href="#physicalCard" role="tab">Physical</a>
+        <a
+        <?php if (!in_array(4, $trackers)){
+          echo 'hidden';
+        }
+        ?>
+        class="list-group-item list-group-item-action" id="list-academic-list" data-toggle="list" href="#academicCard" role="tab">Academic</a>
       </div>
     </div>
     <div class="col-8">
       <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-overview" role="tabpanel">...</div>
+        <div class="card bg-info text-center tab-pane fade show active" id="overviewCard">
+          <div class="card-body">
+            <h5 class="card-title text-white">Overview</h5>
+            <p class="card-text text-white">Under Construction</p>
+          </div>
+          <div class="card-footer text-white">
+            2 days ago
+          </div>
+        </div>
 
         <div class="card text-center tab-pane fade" id="financialCard">
           <div class="card-body">
@@ -67,10 +103,9 @@ session_start();
                 <p class="card-text text-white change">100</p>
               </div>
             </div>
-            <!-- <button data-toggle="modal" data-target="#financialModal" class="btn stretched-link">Update</button> -->
           </div>
           <div class="card-footer text-white">
-            2 days ago
+            <button data-toggle="modal" data-target="#financialModal" class="btn btn-sterisk-custom"><strong>Enter New Data</strong></button>
           </div>
         </div>
 
@@ -101,12 +136,18 @@ session_start();
         <div class="card bg-danger text-center tab-pane fade" id="physicalCard">
           <div class="card-body">
             <h5 class="card-title text-white">Physical</h5>
-            <p class="card-text text-white">7/10</p>
-            <p class="card-text text-white change">0</p>
-            <button data-toggle="modal" data-target="#physicalModal" class="btn stretched-link btn-dark">Update</button>
+            <div class="row">
+              <div class="col-8">
+                <canvas class="chart" id="physicalChart"></canvas>
+              </div>
+              <div class="col-4">
+                <p class="card-text text-white">7/10</p>
+                <p class="card-text text-white change">0</p>
+              </div>
+            </div>
           </div>
           <div class="card-footer text-white">
-            1 day ago
+            <button data-toggle="modal" data-target="#physicalModal" class="btn btn-sterisk-custom"><strong>Enter New Data</strong></button>
           </div>
         </div>
 
@@ -122,6 +163,38 @@ session_start();
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="financialModal" tabindex="-1" role="dialog" aria-labelledby="financalModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="financialModalLabel">Financial Data Entry</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="font-weight-light">Please answer these questions to update your personal financial score.</p>
+          <form class="form-inline" action="trackers/enterData/financialdata.php" method="get">
+            <label class="sr-only" for="financialAccount1Label">Account 1</label>
+            <div class="input-group mb-2 mr-sm-2">
+              <input type="number" class="form-control" name="account1" id="financialAccount1" placeholder="Account 1">
+            </div>
+
+            <label class="sr-only" for="financialAccount2Label">Account 2</label>
+            <div class="input-group mb-2 mr-sm-2">
+              <input type="number" class="form-control" name="account2" id="financialAccount2" placeholder="Account 2">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <a href="./aboutPages/financialAbout.html" type="button" class="btn btn-warning">More Info</a>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
       </div>
     </div>
   </div>
@@ -165,19 +238,20 @@ session_start();
         </div>
         <div class="modal-body">
           <p class="font-weight-light">Please answer these questions to update your personal physical health score.</p>
-          <form class="form-inline">
+          <form class="form-inline" action="trackers/enterData/physicaldata.php" method="get">
             <label class="sr-only" for="physicalSelfRankLabel">Self-ranking</label>
             <div class="d-flex justify-content-center">
-              <input type="range" class="custom-range" id="physicalSelfRank" min="0" max="10">
+              <label class="sr-only" for="physicalSelfRank">Active Hours Today</label>
+              <input type="range" name="activeHours" class="custom-range" id="physicalSelfRank" min="0" max="10">
               <span class="font-weight-bold text-primary ml-2 physicalSelfRankSpan"></span>
             </div>
-          </form>
         </div>
         <div class="modal-footer">
-          <a href="./aboutPages/physicalAbout.html" type="button" class="btn btn-warning">More Info</a>
+          <a href="./aboutPages/financialAbout.html" type="button" class="btn btn-warning">More Info</a>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
@@ -260,41 +334,92 @@ session_start();
 
 <!-- Chart js -->
 <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(245, 245, 245, 0.2)',
-                'rgba(245, 245, 245, 0.2)',
-                'rgba(245, 245, 245, 0.2)',
-                'rgba(245, 245, 245, 0.2)',
-                'rgba(245, 245, 245, 0.2)',
-                'rgba(245, 245, 245, 0.2)'
-            ],
-            borderColor: [
-                'rgba(245, 245, 245, 1)',
-                'rgba(245, 245, 245, 1)',
-                'rgba(245, 245, 245, 1)',
-                'rgba(245, 245, 245, 1)',
-                'rgba(245, 245, 245, 1)',
-                'rgba(245, 245, 245, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+$.ajax({
+  url : "http://localhost/trackers/gatherData/financialdata.php",
+  type : "GET",
+  success : function(data){
+    var userid = [];
+    var account1 = [{}];
+    var account2 = [{}];
+
+    var parsed = jQuery.parseJSON(data);
+
+    var accounts = parsed['account'];
+    var values = parsed['value'];
+    var dates = parsed['date'];
+
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    for (date in dates) {
+      dates[date] = new Date(dates[date]);
+    }
+
+    for (i in accounts) {
+      if (accounts[i] == 0) {
+        account1.push({
+          x: dates[i],
+          y: values[i]
+        });
+      }
+      if (accounts[i] == 1) {
+        account2.push({
+          x: dates[i],
+          y: values[i]
+        });
+      }
+    }
+
+    console.log(account1);
+    console.log(account2);
+
+    var chartdata = {
+      labels: dates,
+      datasets: [
+        {
+          label: "Account 1",
+          fill: true,
+          lineTension: 0,
+          showline: true,
+          backgroundColor: "rgba(245, 245, 245, 0.2)",
+          borderColor: "rgba(245, 245, 245, 1)",
+          pointHoverBackgroundColor: "rgba(0, 0, 0, .2)",
+          pointHoverBorderColor: "rgba(0, 0, 0, 1)",
+          data: account1
+        },
+        {
+          label: "Account 2",
+          fill: true,
+          lineTension: 0,
+          showline: true,
+          backgroundColor: "rgba(245, 245, 245, 0.2)",
+          borderColor: "rgba(245, 245, 245, 1)",
+          pointHoverBackgroundColor: "rgba(0, 0, 0, .2)",
+          pointHoverBorderColor: "rgba(0, 0, 0, 1)",
+          data: account2
+        }
+      ]
+    };
+
+    var ctx = $("#financialChart");
+
+    var LineGraph = new Chart(ctx, {
+      type: 'line',
+      data: chartdata,
+      options: {
         scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
+            xAxes: [{
+                type: 'time',
+                time: {
+                    unit: 'minute'
                 }
             }]
         }
-    }
+      }
+    });
+  },
+  error : function(data) {
+    console.log('Error fetching data.');
+  }
 });
+
 </script>

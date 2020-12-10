@@ -1,3 +1,6 @@
+<?php
+require_once "./loginHelper.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,9 +12,6 @@
     <link rel="stylesheet" href="../css/globals.css">
 
   </head>
-  <?php
-  require_once "./loginHelper.php";
-  ?>
   <body>
     <div class="container-fluid fill">
 

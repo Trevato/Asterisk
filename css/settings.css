@@ -83,3 +83,38 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+#passwordResetForm {
+    background: rgba(245, 245, 245, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+input.transparent-input{
+    background-color:rgba(0,0,0,0) !important;
+    border:none !important;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: white;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(0, 0, 0, 0.6);
+  outline: 0 none;
+}

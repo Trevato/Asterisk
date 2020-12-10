@@ -63,6 +63,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare an insert statement
         $sql = "INSERT INTO authusers (username, password) VALUES (:username, :password)";
+        $user_id = -1;
+        $counter = 0;
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -75,6 +77,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
+
+              // Initializer user with all trackers enabled
+
+                // Get user_id
+                $sql = "SELECT id FROM authusers WHERE username = :username";
+
+                if($stmt = $pdo->prepare($sql)){
+                    // Bind variables to the prepared statement as parameters
+                    $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+
+                    // Attempt to execute the prepared statement
+                    if($stmt->execute()){
+                        if($stmt->rowCount() == 1){
+                            if($row = $stmt->fetch()){
+                                $user_id = $row["id"];
+                                }
+                            }
+                        }
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+
+                // Close statement
+                unset($stmt);
+
+                $active = 1;
+                while($counter < 5){
+                  $sql = "INSERT INTO userselecteddata (user, type, active) VALUES (:id, :type, :active)";
+                  if($stmt = $pdo->prepare($sql)){
+                    $stmt->bindParam(":id", $user_id, PDO::PARAM_STR);
+                    $stmt->bindParam(":type", $counter, PDO::PARAM_STR);
+                    $stmt->bindParam(":active", $active, PDO::PARAM_STR);
+                    $stmt->execute();
+                  }
+                  $counter+=1;
+                }
+
                 // Redirect to login page
                 header("location: login.php");
             } else{
